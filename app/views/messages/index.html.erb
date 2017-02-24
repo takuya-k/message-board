@@ -8,45 +8,14 @@
       <span class = "label label-info"><%= message.name %></span>
       <!-- 内容の出力-->
       <%= message.body %>
+      (<%= link_to "edit", edit_message_path(message) %>
+       <%= link_to "destroy", message, method: :delete, data: {confirm: '削除してもよろしいですか？'} %>
+      )
       <br>
     <% end %>
   </div>
 </div>  
 <!-- メッセージ一覧表示の記載終了 -->    
 
-
-
-<!-- メッセージ投稿を取得開始 -->
-<%= form_for(@message, html: {class: "form-horizontal"}) do |f| %>
-  <!-- エラーメッセージ実装開始-->
-  <% if @message.errors.present? %>
-    <div class="alert alert-danger">
-      <%= alert %>
-      <ul>
-        <% @message.errors.full_messages.each do |full_message| %>
-        <li><%= full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <!-- エラーメッセージ実装終了-->
-  <!-- 名前の入力-->
-  <div class = "form-group">
-    <label class="col-sm-2 control-label" for="message_name">名前：</label>
-    <div class="col-sm-10">
-      <%= f.text_field :name, class: "form-control", placeholder: "名前を入力してください。" %>  
-    </div>
-  </div>
-  <!-- 内容の入力-->    
-  <div class = "form-group">
-    <label class="col-sm-2 control-label" for="message_body">内容：</label>
-    <div class="col-sm-10">
-      <%= f.text_area :body, class: "form-control", placeholder: "内容を入力してください。" %>
-    </div>
-  </div>
-  <!-- 送信ボタン -->
-  <div class="col-sm-offset-2 col-sm-10">
-    <%= f.submit class: "btn btn-sm btn-primary" %>  
-  </div>
-<% end %>
-<!-- メッセージ投稿を取得終了 -->
+<!-- 入力フォームの部分テンプレートを読み込んでいる-->
+<%= render 'form' %>
