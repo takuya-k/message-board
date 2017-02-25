@@ -8,6 +8,8 @@
       <span class = "label label-info"><%= message.name %></span>
       <!-- 内容の出力-->
       <%= message.body %>
+      <!-- 年齢の出力-->
+      <%= message.age %>才
       (<%= link_to "edit", edit_message_path(message) %>
        <%= link_to "destroy", message, method: :delete, data: {confirm: '削除してもよろしいですか？'} %>
       )
